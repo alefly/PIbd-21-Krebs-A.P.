@@ -1,4 +1,5 @@
   bin/
   obj/
   Properties/
-  App.config  
+  App.config
+  Form1.resx
