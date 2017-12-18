@@ -11,8 +11,8 @@ namespace WindowsFormsApplication4
     {
         private bool left;
         private bool right;
-
         public Color dopColor;
+
 
         public string CN() {
             return ";" + dopColor.Name;
@@ -148,6 +148,7 @@ namespace WindowsFormsApplication4
             g.DrawLine(pen, pf[2], pf[5]);
 
 
+
             
         }
 
@@ -155,8 +156,14 @@ namespace WindowsFormsApplication4
         public string getInfo()
         {
             return 199999999999 + ";" + MaxCountBomb + ";" + Weight + ";" + ColorBody.Name + ";" + dopColor.Name;
+
         }
 
+
+        public string getInfo()
+        {
+            return 199999999999 + ";" + MaxCountBomb + ";" + Weight + ";" + ColorBody.Name + ";" + dopColor.Name;
+        }
         public override void moveBomb(Graphics g)
         {
             throw new NotImplementedException();

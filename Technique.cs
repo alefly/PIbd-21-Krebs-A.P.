@@ -19,6 +19,7 @@ namespace WindowsFormsApplication4
 		public Color ColorBody { protected set; get; }
         public Color DopColor { protected set; get; }
 
+
         public virtual double Weight { protected set; get; }
 
 
@@ -52,6 +53,13 @@ namespace WindowsFormsApplication4
 		{
 			ColorBody = color;
 		}
+        public virtual void setDopColor(Color color)
+        {
+            DopColor = color;
+        }
+
+        public abstract void moveBomb(Graphics g);
+
 
         public virtual void setDopColor(Color color)
         {
@@ -59,6 +67,7 @@ namespace WindowsFormsApplication4
         }
 
         public abstract void moveBomb(Graphics g);
+
 
         public string getInfo()
         {
