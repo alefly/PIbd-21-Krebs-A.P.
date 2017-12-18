@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication4
 {
-	
+	public delegate void myDel(WindowsFormsApplication4.ITechnique plane);
 
 	static class Program
 	{
