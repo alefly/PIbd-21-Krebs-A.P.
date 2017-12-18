@@ -21,8 +21,10 @@ namespace WindowsFormsApplication4
 
 		void setMainColor(Color color);
 
+
         void setDopColor(Color color);
 
         string getInfo();
+
     }
 }

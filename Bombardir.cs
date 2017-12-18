@@ -11,12 +11,9 @@ namespace WindowsFormsApplication4
 	{
 		private bool left;
 		private bool right;
-        public Color dopColor;
 
-        public string CN()
-        {
-            return ";" + dopColor.Name;
-        }
+    private Color dopColor;
+
 
         public Bombardir(int maxSpeed, int maxCountBomb, double weight, Color color, bool left, bool right, bool v, Color dopColor) : base(maxSpeed, maxCountBomb, weight, color, left, right)
         {
@@ -24,6 +21,7 @@ namespace WindowsFormsApplication4
             this.right = right;
             this.dopColor = dopColor;
         }
+
 
         public Bombardir(string info) : base(info)
         {
@@ -45,6 +43,7 @@ namespace WindowsFormsApplication4
         {
             return 9999999 + ";" + MaxCountBomb + ";" + Weight + ";" + ColorBody.Name + ";" + dopColor.Name;
         }
+
         protected override void drawLightBombardir(Graphics g)
 		{
             base.drawLightBombardir(g);

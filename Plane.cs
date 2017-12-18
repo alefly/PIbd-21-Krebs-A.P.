@@ -11,11 +11,13 @@ namespace WindowsFormsApplication4
     {
         private bool left;
         private bool right;
+
         public Color dopColor;
 
         public string CN() {
             return ";" + dopColor.Name;
         }
+
         public override int MaxSpeed
         {
             get
@@ -85,6 +87,7 @@ namespace WindowsFormsApplication4
             startPosY = rand.Next(10, 200);
         }
 
+
         public Plane(string info) {
             string[] strs = info.Split(';');
             if(strs.Length == 5) {
@@ -100,6 +103,7 @@ namespace WindowsFormsApplication4
             startPosX = rand.Next(10, 200);
             startPosY = rand.Next(10, 200);
         }
+
 
         public Plane(int maxSpeed, int maxCountBomb, double weight, Color color, bool left, bool right) : this(maxSpeed, maxCountBomb, weight, color)
         {
@@ -143,6 +147,7 @@ namespace WindowsFormsApplication4
             g.DrawLines(pen, pf);
             g.DrawLine(pen, pf[2], pf[5]);
 
+
             
         }
 
@@ -151,6 +156,7 @@ namespace WindowsFormsApplication4
         {
             return 199999999999 + ";" + MaxCountBomb + ";" + Weight + ";" + ColorBody.Name + ";" + dopColor.Name;
         }
+
         public override void moveBomb(Graphics g)
         {
             throw new NotImplementedException();
