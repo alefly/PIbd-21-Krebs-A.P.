@@ -11,7 +11,10 @@ namespace WindowsFormsApplication4
 	{
 		private bool left;
 		private bool right;
-        public Color dopColor;
+
+
+    private Color dopColor;
+
 
         public string CN()
         {
@@ -45,6 +48,9 @@ namespace WindowsFormsApplication4
         {
             return 9999999 + ";" + MaxCountBomb + ";" + Weight + ";" + ColorBody.Name + ";" + dopColor.Name;
         }
+
+
+
         protected override void drawLightBombardir(Graphics g)
 		{
             base.drawLightBombardir(g);
