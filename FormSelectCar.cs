@@ -123,7 +123,8 @@ namespace WindowsFormsApplication4
 				if (plane is Bombardir)
 				{
 					(plane as Bombardir).setDopColor((Color)e.Data.GetData(typeof(Color)));
-					DrawPlane();
+                    plane.setDopColor((Color)e.Data.GetData(typeof(Color)));
+                    DrawPlane();
 				}
 			}
 		}
