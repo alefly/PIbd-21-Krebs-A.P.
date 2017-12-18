@@ -5,10 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace lab_v2._0
+namespace WindowsFormsApplication4
 {
-    class UFO : Vehicle
+    public class Plane : Technique
     {
+        private bool left;
+        private bool right;
+
         public override int MaxSpeed
         {
             get
@@ -17,31 +20,32 @@ namespace lab_v2._0
             }
             protected set
             {
-                if (value > 0 && value < 300)
+                if (value > 0 && value < 1500)
                 {
                     base.MaxSpeed = value;
                 }
                 else
                 {
-                    base.MaxSpeed = 150;
+                    base.MaxSpeed = 1000;
                 }
             }
         }
-        public override int MaxCountPassengers
+
+        public override int MaxCountBomb
         {
             get
             {
-                return base.MaxCountPassengers;
+                return base.MaxCountBomb;
             }
             protected set
             {
                 if (value > 0 && value < 5)
                 {
-                    base.MaxCountPassengers = value;
+                    base.MaxCountBomb = value;
                 }
                 else
                 {
-                    base.MaxCountPassengers = 4;
+                    base.MaxCountBomb = 4;
                 }
             }
         }
@@ -65,46 +69,76 @@ namespace lab_v2._0
             }
         }
 
-        public UFO(int maxSpeed, int maxCountPassenger, double weight, Color color)
+        public Plane(int maxSpeed, int maxCountBomb, double weight, Color color)
         {
             this.MaxSpeed = maxSpeed;
-            this.MaxCountPassengers = maxCountPassenger;
+            this.MaxCountBomb = maxCountBomb;
             this.ColorBody = color;
             this.Weight = weight;
-            this.countPassengers = 0;
+            this.countBomb = 0;
             Random rand = new Random();
             startPosX = rand.Next(10, 200);
             startPosY = rand.Next(10, 200);
         }
-        public override void moveUFO(Graphics g)
+
+        public Plane(int maxSpeed, int maxCountBomb, double weight, Color color, bool left, bool right) : this(maxSpeed, maxCountBomb, weight, color)
         {
-            startPosX += (MaxSpeed * 50 / (float)Weight) / (countPassengers == 0 ? 1 : countPassengers);
-            drawUFO(g);
+            this.left = left;
+            this.right = right;
         }
 
-        public override void drawUFO(Graphics g)
+        public override void moveBombardir(Graphics g)
         {
-            drawSuperUFO(g);
+            startPosX += (MaxSpeed * 50 / (float)Weight) / (countBomb == 0 ? 1 : countBomb);
+            drawBombardir(g);
         }
-        protected virtual void drawSuperUFO(Graphics g)
+
+        public override void moveUpBombardir(Graphics g)
         {
+            startPosY -= (MaxSpeed * 50 / (float)Weight) / (countBomb == 0 ? 1 : countBomb);
+            drawBombardir(g);
+        }
+
+        public override void drawBombardir(Graphics g)
+        {
+            drawLightBombardir(g);
+        }
+
+        protected virtual void drawLightBombardir(Graphics g)
+        {
+           
             Pen pen = new Pen(Color.Black);
-            g.DrawEllipse(pen, startPosX + 20, startPosY - 10, 80, 30);
-            Brush br = new SolidBrush(ColorBody);
+            g.DrawEllipse(pen, startPosX + 20, startPosY - 10 + 5, 80, 30);
+            Brush br = new SolidBrush(this.ColorBody);
             PointF[] pf = new PointF[7];
-            pf[0] = new Point((int)startPosX + 20, (int)startPosY);
-            pf[1] = new Point((int)startPosX + 100, (int)startPosY);
-            pf[5] = new Point((int)startPosX, (int)startPosY + 12);
-            pf[2] = new Point((int)startPosX + 120, (int)startPosY + 12);
-            pf[4] = new Point((int)startPosX + 20, (int)startPosY + 24);
-            pf[3] = new Point((int)startPosX + 100, (int)startPosY + 24);
-            pf[6] = new Point((int)startPosX + 20, (int)startPosY);
+           
+            pf[0] = new Point((int)startPosX + 20, (int)startPosY + 5);
+            pf[1] = new Point((int)startPosX + 100, (int)startPosY + 5);
+            pf[5] = new Point((int)startPosX, (int)startPosY + 12 + 5);
+            pf[2] = new Point((int)startPosX + 120, (int)startPosY + 12 + 5);
+            pf[4] = new Point((int)startPosX + 20, (int)startPosY + 24 + 5);
+            pf[3] = new Point((int)startPosX + 100, (int)startPosY + 24 + 5);
+            pf[6] = new Point((int)startPosX + 20, (int)startPosY + 5);
             g.FillPolygon(br, pf);
             g.DrawLines(pen, pf);
             g.DrawLine(pen, pf[2], pf[5]);
-            
         }
 
+        public override void moveBomb(Graphics g)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void giveBomb(Graphics g)
+        {
+            takeBomb(g);
+        }
+
+        protected virtual void takeBomb(Graphics g)
+        {
+
+        }
 
     }
+
 }
