@@ -13,14 +13,14 @@ namespace WindowsFormsApplication4
 	public partial class Form1 : Form
 	{
 		Parking parking;
-        
+
+		FormSelectCar form;
 
         public Form1()
 		{
             InitializeComponent();
-			parking = new Parking(15);
-          
-            for (int i = 1; i < 6; i++)
+			parking = new Parking(5);
+			for (int i = 1; i < 6; i++)
 			{
 				listBoxLevels.Items.Add("Уровень " + i);
 			}
@@ -99,33 +99,25 @@ namespace WindowsFormsApplication4
 
 		private void buttonSetPlane_Click(object sender, EventArgs e)
 		{
+			form = new FormSelectCar();
+			form.ShowDialog();
+			var plane = form.getPlane;
+			if (plane != null)
+			{
+				int place = parking.PutPlaneInParking(plane);
+				if (place > -1)
+				{
+					Draw();
+					MessageBox.Show("Ваше место: " + place);
+				}
+				else
+				{
+					MessageBox.Show("Машину не удалось поставить");
+				}
+			}
+		}
 
-            ColorDialog dialog = new ColorDialog();
-            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                var plane = new Plane(1, 1, 5.0, dialog.Color, false, false);
-                int place = parking.PutPlaneInParking(plane);
-                Draw();
-                MessageBox.Show("Ваш ангар: " + place);
-            }
-        }
-
-        private void button3_Click_1(object sender, EventArgs e)
-        {
-            ColorDialog dialog = new ColorDialog();
-            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                ColorDialog dialogDop = new ColorDialog();
-                if (dialogDop.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    var plane = new Plane(1, 1, 5.0, dialog.Color, false, false);
-                    int place = parking.PutPlaneInParking(plane);
-                    Draw();
-                    MessageBox.Show("Ваш ангар: " + place);
-                }
-            }
-        }
-    }
+	}
 }
 
 
