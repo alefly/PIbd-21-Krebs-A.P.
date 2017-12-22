@@ -145,7 +145,7 @@ namespace lab1
             {
                 knife.Clean(potatos[i]);
             }
-            //buttonAddPotatos.Enabled = true;
+      
             MessageBox.Show("Картошку помыли, можно резать", "Кухня", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
@@ -228,7 +228,7 @@ namespace lab1
             {
                 fryer.AddPotato(potatos[i]);
             }
-            //buttonAddPan.Enabled = true;
+            
             ingr += 1;
             MessageBox.Show("Картошку положили, можно готовить", "Кухня", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
