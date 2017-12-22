@@ -35,18 +35,7 @@ namespace lab1
             knife = new Knife();
             fryer = new Fryer();
         }
-
-        //private void Form1_Load(object sender, EventArgs e)
-        //{
-        //    waterTap = new WaterTap();
-        //    knife = new Knife();
-        //    fryer = new Fryer();
-        //}
-
-       
-
         
-
         private void button1_Click(object sender, EventArgs e)
         {
             if (numericUpDown1.Value > 0)
@@ -185,7 +174,6 @@ namespace lab1
             {
                 knife.Cut(potatos[i]);
             }
-            //buttonAddPotatos.Enabled = true;
             MessageBox.Show("Картошку порезали, можно добавлять в фритюрницу", "Кухня", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -270,9 +258,6 @@ namespace lab1
                 MessageBox.Show("Что-то пошло не так, картошка не сварилась", "Ошибка логики", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-
-
 
         }
 
