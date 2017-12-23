@@ -7,14 +7,11 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApplication4
 {
-	public class Bombardir : Plane
+	public class Bombardir : Plane, IComparable<Bombardir>,IEquatable<Plane>
 	{
 		private bool left;
 		private bool right;
-
-
-    private Color dopColor;
-
+        public Color dopColor;
 
         public string CN()
         {
@@ -48,9 +45,6 @@ namespace WindowsFormsApplication4
         {
             return 9999999 + ";" + MaxCountBomb + ";" + Weight + ";" + ColorBody.Name + ";" + dopColor.Name;
         }
-
-
-
         protected override void drawLightBombardir(Graphics g)
 		{
             base.drawLightBombardir(g);
@@ -72,5 +66,70 @@ namespace WindowsFormsApplication4
 		{
 			dopColor = color;
 		}
-	}
+
+        public int CompareTo(Bombardir other)
+        {
+            var res = (this is Plane).CompareTo(other is Plane);
+            if (res != 0)
+            {
+                return res;
+            }
+            if(left != other.left)
+            {
+                return left.CompareTo(other.left);
+            }
+            if (right != other.right)
+            {
+                return right.CompareTo(other.right);
+            }
+            if (dopColor != other.dopColor)
+            {
+                dopColor.Name.CompareTo(other.dopColor.Name);
+            }
+            return 0;
+        }
+        public bool Equals(Bombardir other)
+        {
+            var res = (this is Plane).Equals(other is Plane);
+
+            if (!res)
+            {
+                return res;
+            }
+            if (left != other.left)
+            {
+                return false;
+            }
+            if (right != other.right)
+            {
+                return false;
+            }
+            if (dopColor != other.dopColor)
+            {
+                return false;
+            }
+            return true;
+        }
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            Bombardir planeobj = obj as Bombardir;
+            if (planeobj == null)
+            {
+                return false;
+            }
+            else
+            {
+                return Equals(planeobj);
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+    }
 }

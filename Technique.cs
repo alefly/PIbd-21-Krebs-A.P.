@@ -10,7 +10,6 @@ namespace WindowsFormsApplication4
 	public abstract class Technique : ITechnique
 	{
 
-
 		protected float startPosX;
 		protected float startPosY;
 		protected int countBomb;
@@ -19,9 +18,7 @@ namespace WindowsFormsApplication4
 		public Color ColorBody { protected set; get; }
         public Color DopColor { protected set; get; }
 
-
         public virtual double Weight { protected set; get; }
-
 
 		public abstract void moveBombardir(Graphics g);
         public abstract void giveBomb(Graphics g);
@@ -60,15 +57,6 @@ namespace WindowsFormsApplication4
 
         public abstract void moveBomb(Graphics g);
 
-
-        public virtual void setDopColor(Color color)
-        {
-            DopColor = color;
-        }
-
-        public abstract void moveBomb(Graphics g);
-
-
         public string getInfo()
         {
             string inf = MaxSpeed + ";" + MaxCountBomb + ";" + Weight + ";" + ColorBody.Name;
@@ -77,5 +65,4 @@ namespace WindowsFormsApplication4
             return inf;
         }
     }
-
 }
