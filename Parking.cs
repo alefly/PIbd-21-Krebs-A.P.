@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace WindowsFormsApplication4
 {
-
     public class Parking
     {
         //список с уровнями парковки
@@ -23,6 +21,7 @@ namespace WindowsFormsApplication4
         ///текущий уровень 
         int currentLevel;
         ///получить текущий уровень
+       
         public int getCurrentLevel { get { return currentLevel; } }
         public Parking(int countStages)
         {
@@ -71,15 +70,19 @@ namespace WindowsFormsApplication4
         public void Draw(Graphics g)
         {
             DrawMarking(g);
-            for (int i = 0; i < countPlaces; i++)
-            {
-                var plane = parkingStages[currentLevel][i];
-                if (plane != null)
-                { ///если место не пустое
+            int i = 0;
+            int cl = currentLevel;
+            foreach(var plane in parkingStages[currentLevel])
+            { 
 					plane.setPosition(5 + i / 5 * 200 + 5, i % 5 * 120 + 15);
                     plane.drawBombardir(g);
-                }
+                i++;
+                
             }
+        }
+        public void Sort()
+        {
+            parkingStages.Sort();
         }
 
         /// отрисовка разметки парковки
@@ -216,5 +219,4 @@ namespace WindowsFormsApplication4
         }
 
     }
-
 }
