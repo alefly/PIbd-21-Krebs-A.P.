@@ -1,8 +1,10 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,14 +18,23 @@ namespace WindowsFormsApplication4
         Parking parking;
 
         FormSelectCar form;
+        private Logger log;
+        private Logger logEx;
+        StreamWriter w;
+
 
         public Form1()
         {
             InitializeComponent();
+
+            log = LogManager.GetCurrentClassLogger();
+            w = File.AppendText("D://log.txt");
+
             parking = new Parking(5);
             for (int i = 1; i < 6; i++)
             {
                 listBoxLevels.Items.Add("Уровень " + i);
+
             }
             listBoxLevels.SelectedIndex = parking.getCurrentLevel;
             Draw();
@@ -46,9 +57,32 @@ namespace WindowsFormsApplication4
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 var plane = new Plane(100, 4, 1000, dialog.Color);
-                int place = parking.PutPlaneInParking(plane);
-                Draw();
-                MessageBox.Show("Ваше место: " + place);
+
+                //int place = parking.PutPlaneInParking(plane);
+                //Draw();
+                //MessageBox.Show("Ваше место: " + place);
+                if (plane != null)
+                {
+                    try
+                    {
+                        int place = parking.PutPlaneInParking(plane);
+                        Draw();
+                        MessageBox.Show("Ваше место: " + place);
+                        log.Info("Занято место: " + place);
+                        
+                    }
+                    catch (ParkingOverflowException ex)
+                    {
+                        log.Error("Ошибка переполнения");
+                        MessageBox.Show(ex.Message, "Ошибка переполнения", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    catch (ParkingIndexOutOfRangeException ex)
+                    {
+                        log.Error("Общая ошибка");
+                        MessageBox.Show(ex.Message, "Общая ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
             }
 
         }
@@ -62,9 +96,26 @@ namespace WindowsFormsApplication4
                 if (dialogDop.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     var plane = new Bombardir(100, 4, 1000, dialog.Color, true, true, true, dialogDop.Color);
-                    int place = parking.PutPlaneInParking(plane);
-                    Draw();
-                    MessageBox.Show("Ваше место: " + place);
+
+                    try
+                    {
+                        int place = parking.PutPlaneInParking(plane);
+                        Draw();
+                        MessageBox.Show("Ваше место: " + place);
+                        log.Info("Занято место: " + place);
+                        
+                    }
+                    catch (ParkingOverflowException ex)
+                    {
+                        log.Error("Ошибка переполнения");
+                        MessageBox.Show(ex.Message, "Ошибка переполнения", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    catch (ParkingIndexOutOfRangeException ex)
+                    {
+                        log.Error("Общая ошибка");
+                        MessageBox.Show(ex.Message, "Общая ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
                 }
             }
         }
@@ -73,28 +124,58 @@ namespace WindowsFormsApplication4
         {
             if (maskedTextBox1.Text != "")
             {
-                var plane = parking.GetPlaneInParking(Convert.ToInt32(maskedTextBox1.Text));
 
-                Bitmap bmp = new Bitmap(pictureBox2.Width, pictureBox2.Height);
-                Graphics gr = Graphics.FromImage(bmp);
-                plane.setPosition(3, 5);
-                plane.drawBombardir(gr);
-                pictureBox2.Image = bmp;
-                Draw();
+
+                try
+                {
+                    var plane = parking.GetPlaneInParking(Convert.ToInt32(maskedTextBox1.Text));
+
+                    Bitmap bmp = new Bitmap(pictureBox2.Width, pictureBox2.Height);
+                    Graphics gr = Graphics.FromImage(bmp);
+                    plane.setPosition(3, 5);
+                    plane.drawBombardir(gr);
+                    pictureBox2.Image = bmp;
+
+                    log.Info("Объект изъят с места " + Convert.ToInt32(maskedTextBox1.Text));
+                    
+                    Draw();
+
+                }
+
+                catch (ParkingIndexOutOfRangeException ex)
+                {
+
+                    log.Error("Объект не найден");
+                    MessageBox.Show(ex.Message, "Ошибка переполнения", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    log.Error("Общая ошибка");
+                    MessageBox.Show(ex.Message, "Общая ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
             }
         }
+
 
         private void button2_Click_1(object sender, EventArgs e)
         {
             parking.LevelDown();
             listBoxLevels.SelectedIndex = parking.getCurrentLevel;
+            log.Info("Переход на уровень ниже. Текущий уровень: " + parking.getCurrentLevel);
+           
             Draw();
+
         }
+    }
+
 
         private void button4_Click(object sender, EventArgs e)
         {
             parking.LevelUp();
             listBoxLevels.SelectedIndex = parking.getCurrentLevel;
+            log.Info("Переход на уровень выше. Текущий уровень: " + parking.getCurrentLevel);
+           
             Draw();
         }
 
@@ -105,15 +186,23 @@ namespace WindowsFormsApplication4
             var plane = form.getPlane;
             if (plane != null)
             {
-                int place = parking.PutPlaneInParking(plane);
-                if (place > -1)
+                try
                 {
+                    int place = parking.PutPlaneInParking(plane);
                     Draw();
                     MessageBox.Show("Ваше место: " + place);
+                    log.Info("Занято место: " + place);
+                   
                 }
-                else
+                catch (ParkingOverflowException ex)
                 {
-                    MessageBox.Show("Машину не удалось поставить");
+                    log.Error("Ошибка переполнения");
+                    MessageBox.Show(ex.Message, "Ошибка переполнения", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (ParkingIndexOutOfRangeException ex)
+                {
+                    log.Error("Общая ошибка");
+                    MessageBox.Show(ex.Message, "Общая ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -132,11 +221,15 @@ namespace WindowsFormsApplication4
                 {
                     MessageBox.Show("Сохранение прошло успешно", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    log.Info("Сохранение выполнено");
+                    
+
                 }
                 else
                 {
                     MessageBox.Show("Не сохранилось", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    log.Info("Сохранение не выполнено");
                 }
             }
         }
@@ -149,16 +242,25 @@ namespace WindowsFormsApplication4
                 {
                     MessageBox.Show("Загрузили", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    log.Info("Загрузка выполнена");
                 }
                 else
                 {
                     MessageBox.Show("Незагрузили", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    log.Info("Загрузка не выполнена");
                 }
                 Draw();
             }
+
         }
+
+        
+        
     }
+
+
+    
 
 }
 
