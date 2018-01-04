@@ -9,29 +9,31 @@ namespace WindowsFormsApplication4
 {
     class Plane : Technique
     {
-        public override int MaxSpeed
+        public public override int MaxSpeed
         {
+            private bool left;
+            private bool right;
             get
             {
                 return base.MaxSpeed;
             }
             protected set
             {
-                if (value > 0 && value < 300)
+                if (value > 0 && value < 1500)
                 {
                     base.MaxSpeed = value;
                 }
                 else
                 {
-                    base.MaxSpeed = 150;
+                    base.MaxSpeed = 1000;
                 }
             }
         }
-        public override int MaxCountPassengers
+        public override int MaxCountBomb
         {
             get
             {
-                return base.MaxCountPassengers;
+                return base.MaxCountBomb;
             }
             protected set
             {
@@ -65,33 +67,41 @@ namespace WindowsFormsApplication4
             }
         }
 
-        public Plane(int maxSpeed, int maxCountPassenger, double weight, Color color)
+        public Plane(int maxSpeed, int maxCountBomb, double weight, Color color)
         {
             this.MaxSpeed = maxSpeed;
-            this.MaxCountPassengers = maxCountPassenger;
+            this.MaxCountBomb = maxCountBomb;
             this.ColorBody = color;
             this.Weight = weight;
-            this.countPassengers = 0;
+            this.countBomb = 0;
             Random rand = new Random();
             startPosX = rand.Next(10, 200);
             startPosY = rand.Next(10, 200);
         }
-        public override void moveUFO(Graphics g)
+        
+        public Plane(int maxSpeed, int maxCountBomb, double weight, Color color, bool left, bool right) : this(maxSpeed, maxCountBomb, weight, color)
+         {
+             this.left = left;
+             this.right = right;
+         }
+ 
+        public override void moveUpBombardir(Graphics g)
         {
-            startPosX += (MaxSpeed * 50 / (float)Weight) / (countPassengers == 0 ? 1 : countPassengers);
+            startPosY -= (MaxSpeed * 50 / (float)Weight) / (countBomb == 0 ? 1 : countBomb);
             drawUFO(g);
         }
 
-        public override void drawUFO(Graphics g)
+        public override void drawBombardir(Graphics g)
         {
-            drawSuperUFO(g);
+            drawLightBombardir(g);
         }
-        protected virtual void drawSuperUFO(Graphics g)
+        protected virtual void drawLightBombardir(Graphics g)
         {
             Pen pen = new Pen(Color.Black);
-            g.DrawEllipse(pen, startPosX + 20, startPosY - 10, 80, 30);
-            Brush br = new SolidBrush(ColorBody);
+            g.DrawEllipse(pen, startPosX + 20, startPosY - 10 + 5, 80, 30);
+            Brush br = new SolidBrush(this.ColorBody);
             PointF[] pf = new PointF[7];
+            
             pf[0] = new Point((int)startPosX + 20, (int)startPosY);
             pf[1] = new Point((int)startPosX + 100, (int)startPosY);
             pf[5] = new Point((int)startPosX, (int)startPosY + 12);
@@ -102,9 +112,22 @@ namespace WindowsFormsApplication4
             g.FillPolygon(br, pf);
             g.DrawLines(pen, pf);
             g.DrawLine(pen, pf[2], pf[5]);
-            
         }
 
+        public override void moveBomb(Graphics g)
+         {
+             throw new NotImplementedException();
+         }
+ 
+         public override void giveBomb(Graphics g)
+         {
+             takeBomb(g);
+         }
+ 
+         protected virtual void takeBomb(Graphics g)
+         {
+ 
+         }
 
     }
 }
