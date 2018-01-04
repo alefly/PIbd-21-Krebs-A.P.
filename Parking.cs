@@ -9,7 +9,18 @@ namespace WindowsFormsApplication4
 {
 	public class Parking
 	{
-		
+		//список с уровнями парковки
+		List<ClassArray<ITechnique>> parkingStages;
+		///сколько мест на каждом уровне
+		int countPlaces = 20;
+		//// ширина парковочного места
+		int placeSizeWidth = 200;
+		//// длина парковочного места
+		int placeSizeHeighth = 120;
+		///текущий уровень 
+		int currentLevel;
+		///получить текущий уровень
+		public int getCurrentLevel { get { return currentLevel; } }
 		public Parking(int countStages)
 		{
 			parkingStages = new List<ClassArray<ITechnique>>(countStages);
@@ -19,15 +30,51 @@ namespace WindowsFormsApplication4
 			}
 		}
 
+		// перейти на уровень выше
+		public void LevelUp()
+		{
+			if (currentLevel + 1 < parkingStages.Count)
+			{
+				currentLevel++;
+			}
+		}
+
+		////перейти на уровень ниже
+		public void LevelDown()
+		{
+			if (currentLevel > 0)
+			{
+				currentLevel--;
+			}
+		}
+
+		// поставить машину на парковку
+
+		public int PutPlaneInParking(ITechnique plane)
+		{
+			return parkingStages[currentLevel] + plane;
+		}
+
+		//// забрать машину с парковки
+
+		public ITechnique GetPlaneInParking(int ticket)
+		{
+			return parkingStages[currentLevel] - ticket;
+		}
+
+		/////отрисовка 
+
 		public void Draw(Graphics g)
 		{
 			DrawMarking(g);
 			for (int i = 0; i < countPlaces; i++)
 			{
 				var plane = parkingStages[currentLevel][i];
-				plane.setPosition(5 + i / 5 * 200 + 5, i % 5 * 120 + 15);
-				plane.drawBombardir(g);
-				
+				if (plane != null)
+				{ ///если место не пустое
+					plane.setPosition(5 + i / 5 * 200 + 5, i % 5 * 120 + 15);
+					plane.drawBombardir(g);
+				}
 			}
 		}
 
