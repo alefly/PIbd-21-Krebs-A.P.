@@ -11,13 +11,11 @@ namespace WindowsFormsApplication4
 	{
 		void moveBombardir(Graphics g);
 
-        void moveUpBombardir(Graphics g);
-
-        void moveBomb(Graphics g);
+    void moveBomb(Graphics g);
 
 		void setPosition(int x, int y);
 
-        void drawBombardir(Graphics gr);
+    void drawBombardir(Graphics gr);
 
 		void setMainColor(Color color);
     }

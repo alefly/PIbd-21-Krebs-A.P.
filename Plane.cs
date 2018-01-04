@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApplication4
 {
+
     public class Plane : Technique
     {
         private bool left;
@@ -70,6 +71,7 @@ namespace WindowsFormsApplication4
         }
 
         public Plane(int maxSpeed, int maxCountBomb, double weight, Color color)
+
         {
             this.MaxSpeed = maxSpeed;
             this.MaxCountBomb = maxCountBomb;

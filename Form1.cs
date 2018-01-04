@@ -52,6 +52,7 @@ namespace WindowsFormsApplication4
             ColorDialog dialog = new ColorDialog();
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
+
                 ColorDialog dialogDop = new ColorDialog();
                 if (dialogDop.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
@@ -60,12 +61,14 @@ namespace WindowsFormsApplication4
                     Draw();
                     MessageBox.Show("Ваше место: " + place);
                 }
+
             }
         }
 
         private void buttonTakePlane_Click(object sender, EventArgs e)
         {
             if (maskedTextBox1.Text != "")
+
             {
                 var car = parking.GetPlaneInParking(Convert.ToInt32(maskedTextBox1.Text));
                 Bitmap bmp = new Bitmap(pictureBox2.Width, pictureBoxTakeCar.Height);

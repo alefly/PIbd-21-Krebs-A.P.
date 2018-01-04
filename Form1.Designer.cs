@@ -1,6 +1,6 @@
-﻿using System;
 
-namespace WindowsFormsApplication4
+﻿using System;
+﻿namespace WindowsFormsApplication4
 {
 	partial class Form1
 	{
@@ -40,17 +40,13 @@ namespace WindowsFormsApplication4
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
+             
             this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(875, 599);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            // 
-            // buttonSetPlane
-            // 
+            
             this.buttonSetPlane.Location = new System.Drawing.Point(918, 73);
             this.buttonSetPlane.Name = "buttonSetPlane";
             this.buttonSetPlane.Size = new System.Drawing.Size(221, 65);
@@ -58,9 +54,7 @@ namespace WindowsFormsApplication4
             this.buttonSetPlane.Text = "Поставить НЛО";
             this.buttonSetPlane.UseVisualStyleBackColor = true;
             this.buttonSetPlane.Click += new System.EventHandler(this.buttonSetPlane_Click);
-            // 
-            // button3
-            // 
+            
             this.button3.Location = new System.Drawing.Point(918, 161);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(221, 65);
@@ -68,26 +62,20 @@ namespace WindowsFormsApplication4
             this.button3.Text = "Поставить Супер НЛО";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click_1);
-            // 
-            // label1
-            // 
+             
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(63, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(42, 13);
             this.label1.TabIndex = 3;
             this.label1.Text = "Место:";
-            // 
-            // maskedTextBox1
-            // 
+            
             this.maskedTextBox1.Location = new System.Drawing.Point(124, 30);
             this.maskedTextBox1.Mask = "00";
             this.maskedTextBox1.Name = "maskedTextBox1";
             this.maskedTextBox1.Size = new System.Drawing.Size(18, 20);
             this.maskedTextBox1.TabIndex = 4;
-            // 
-            // button1
-            // 
+            
             this.button1.Location = new System.Drawing.Point(30, 56);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(172, 53);
@@ -95,9 +83,7 @@ namespace WindowsFormsApplication4
             this.button1.Text = "Забрать";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // groupBox1
-            // 
+            
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.maskedTextBox1);
             this.groupBox1.Controls.Add(this.label1);
@@ -107,9 +93,7 @@ namespace WindowsFormsApplication4
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Забрать машину";
-            // 
-            // Form1
-            // 
+          
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1151, 671);
