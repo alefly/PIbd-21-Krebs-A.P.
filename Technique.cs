@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 
-namespace lab_v2._0
+namespace WindowsFormsApplication4
 {
-    public abstract class Vehicle : ITech
+    public abstract class Technique : ITechnique
     {
         protected int weight;
         protected int maxSpeed;

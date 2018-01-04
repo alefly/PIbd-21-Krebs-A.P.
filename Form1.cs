@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace lab_v2._0
+namespace WindowsFormsApplication4
 {
     public partial class Form1 : Form
     {
@@ -20,7 +20,7 @@ namespace lab_v2._0
         int weight;
         int might;
 
-        private ITech inter;
+        private ITechnique inter;
 
         public Form1()
         {
@@ -92,7 +92,7 @@ namespace lab_v2._0
         {
             if (checkFields())
             {
-                inter = new UFO(maxSpeed, maxCountPass, weight, color);
+                inter = new Plane(maxSpeed, maxCountPass, weight, color);
                 Bitmap bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
                 Graphics gr = Graphics.FromImage(bmp);
                 inter.drawUFO(gr);
@@ -104,7 +104,7 @@ namespace lab_v2._0
 
         private void button4_Click(object sender, EventArgs e)
         {
-            inter = new SuperUFO(150, 4, 1000, color, true, might, dopColor);
+            inter = new Bombardir(150, 4, 1000, color, true, might, dopColor);
             Bitmap bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             Graphics gr = Graphics.FromImage(bmp);
             inter.drawUFO(gr);

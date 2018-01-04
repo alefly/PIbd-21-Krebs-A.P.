@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace lab_v2._0
+namespace WindowsFormsApplication4
 {
-    class UFO : Vehicle
+    class Plane : Technique
     {
         public override int MaxSpeed
         {
@@ -65,7 +65,7 @@ namespace lab_v2._0
             }
         }
 
-        public UFO(int maxSpeed, int maxCountPassenger, double weight, Color color)
+        public Plane(int maxSpeed, int maxCountPassenger, double weight, Color color)
         {
             this.MaxSpeed = maxSpeed;
             this.MaxCountPassengers = maxCountPassenger;

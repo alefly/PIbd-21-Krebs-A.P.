@@ -5,8 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace lab_v2._0 { 
-    public interface ITech
+namespace WindowsFormsApplication4
+{ 
+    public interface ITechnique
     {
         void moveUFO(Graphics g);
         void drawUFO(Graphics g);
