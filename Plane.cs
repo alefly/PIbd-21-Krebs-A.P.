@@ -7,18 +7,13 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApplication4
 {
-
     public class Plane : Technique
     {
-
         private bool left;
         private bool right;
 
         public override int MaxSpeed
-
         {
-            private bool left;
-            private bool right;
             get
             {
                 return base.MaxSpeed;
@@ -86,7 +81,6 @@ namespace WindowsFormsApplication4
             startPosY = rand.Next(10, 200);
         }
 
-
         public Plane(int maxSpeed, int maxCountBomb, double weight, Color color, bool left, bool right) : this(maxSpeed, maxCountBomb, weight, color)
         {
             this.left = left;
@@ -125,7 +119,6 @@ namespace WindowsFormsApplication4
             pf[4] = new Point((int)startPosX + 20, (int)startPosY + 24 + 5);
             pf[3] = new Point((int)startPosX + 100, (int)startPosY + 24 + 5);
             pf[6] = new Point((int)startPosX + 20, (int)startPosY + 5);
-
             g.FillPolygon(br, pf);
             g.DrawLines(pen, pf);
             g.DrawLine(pen, pf[2], pf[5]);
