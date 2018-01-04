@@ -68,13 +68,12 @@ namespace WindowsFormsApplication4
             if (maskedTextBox1.Text != "")
             {
                 var car = parking.GetPlaneInParking(Convert.ToInt32(maskedTextBox1.Text));
-
-                //Bitmap bmp = new Bitmap(pictureBox2.Width, pictureBoxTakeCar.Height);
-                //Graphics gr = Graphics.FromImage(bmp);
-                //car.setPosition(5, 5);
-                //car.drawCar(gr);
-                //pictureBoxTakeCar.Image = bmp;
-                //Draw();
+                Bitmap bmp = new Bitmap(pictureBox2.Width, pictureBoxTakeCar.Height);
+                Graphics gr = Graphics.FromImage(bmp);
+                car.setPosition(5, 5);
+                car.drawCar(gr);
+                pictureBoxTakeCar.Image = bmp;
+                Draw();
             }
         }
 
