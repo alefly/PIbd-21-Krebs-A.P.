@@ -64,7 +64,6 @@ namespace WindowsFormsApplication4
 
 		/////отрисовка 
 
-
 		public void Draw(Graphics g)
 		{
 			DrawMarking(g);
@@ -79,9 +78,7 @@ namespace WindowsFormsApplication4
 			}
 		}
 
-		/// отрисовка разметки парковки
-
-
+		
 		private void DrawMarking(Graphics g)
 		{
 			Pen pen = new Pen(Color.Black, 3);
