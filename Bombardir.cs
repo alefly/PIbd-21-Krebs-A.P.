@@ -7,15 +7,14 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApplication4
 {
-
-    class Bombardir : Plane
-    {
-        private bool magic;
-        private int might;
+	public class Bombardir : Plane
+	{
+		private bool left;
+		private bool right;
         private Color dopColor;
-        private Color color;
-        
-        public Bombardir(int maxSpeed, int maxCountPassenget, double weight, Color color, bool magic, int might, Color dopColor) : base(maxSpeed, maxCountPassenget, weight, color)
+
+
+        public Bombardir(int maxSpeed, int maxCountBomb, double weight, Color color, bool left, bool right, bool v, Color dopColor) : base(maxSpeed, maxCountBomb, weight, color, left, right)
         {
             this.left = left;
             this.right = right;
