@@ -20,9 +20,5 @@ namespace WindowsFormsApplication4
         void drawBombardir(Graphics gr);
 
 		void setMainColor(Color color);
-
-        void setDopColor(Color color);
-
-        string getInfo();
     }
 }

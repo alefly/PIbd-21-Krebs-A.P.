@@ -7,17 +7,11 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApplication4
 {
-    public class Plane : Technique, IComparable<Plane>,IEquatable<Plane>
+    public class Plane : Technique
     {
-
-
         private bool left;
         private bool right;
-        public Color dopColor;
 
-        public string CN() {
-            return ";" + dopColor.Name;
-        }
         public override int MaxSpeed
         {
             get
@@ -87,22 +81,6 @@ namespace WindowsFormsApplication4
             startPosY = rand.Next(10, 200);
         }
 
-        public Plane(string info) {
-            string[] strs = info.Split(';');
-            if(strs.Length == 5) {
-                this.MaxSpeed = Convert.ToInt32(strs[0]);
-                this.MaxCountBomb = Convert.ToInt32(strs[1]);
-                this.Weight = Convert.ToInt32(strs[2]);
-                this.ColorBody = Color.FromName(strs[3]);
-               
-            }
-            this.countBomb = 0;
-            dopColor = Color.White;
-            Random rand = new Random();
-            startPosX = rand.Next(10, 200);
-            startPosY = rand.Next(10, 200);
-        }
-
         public Plane(int maxSpeed, int maxCountBomb, double weight, Color color, bool left, bool right) : this(maxSpeed, maxCountBomb, weight, color)
         {
             this.left = left;
@@ -144,15 +122,8 @@ namespace WindowsFormsApplication4
             g.FillPolygon(br, pf);
             g.DrawLines(pen, pf);
             g.DrawLine(pen, pf[2], pf[5]);
-
-            
         }
 
-
-        public string getInfo()
-        {
-            return 199999999999 + ";" + MaxCountBomb + ";" + Weight + ";" + ColorBody.Name + ";" + dopColor.Name;
-        }
         public override void moveBomb(Graphics g)
         {
             throw new NotImplementedException();
@@ -168,76 +139,6 @@ namespace WindowsFormsApplication4
 
         }
 
-        public int CompareTo(Plane other)
-        {
-            if (other == null)
-            {
-                return 1;
-            }
-            if (MaxSpeed != other.MaxSpeed)
-            { 
-                return MaxSpeed.CompareTo(other.MaxSpeed);
-            }
-            if (countBomb != other.countBomb)
-            {
-                return countBomb.CompareTo(other.countBomb);
-            }
-            if (Weight != other.Weight)
-            {
-                return Weight.CompareTo(other.Weight);
-            }
-            if (ColorBody != other.ColorBody)
-            {
-                ColorBody.Name.CompareTo(other.ColorBody.Name);
-            }
-            return 0;
-        }
-
-        public bool Equals(Plane other)
-        {
-            if (other == null)
-            {
-                return false;
-            }
-            if (MaxSpeed != other.MaxSpeed)
-            {
-                return false;
-            }
-            if (countBomb != other.countBomb)
-            {
-                return false;
-            }
-            if (Weight != other.Weight)
-            {
-                return false;
-            }
-            if (ColorBody != other.ColorBody)
-            {
-                return false;
-            }
-            return true;
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (obj == null)
-            {
-                return false;
-            }
-            Plane planeobj = obj as Plane;
-            if (planeobj == null)
-            {
-                return false;
-            }
-            else
-            {
-                return Equals(planeobj);
-            }
-        }
-        public override int GetHashCode()
-        {
-            return MaxSpeed.GetHashCode();
-        }
     }
 
 }
