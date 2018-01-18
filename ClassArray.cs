@@ -48,7 +48,7 @@ namespace WindowsFormsApplication4
 				p.places.Remove(index);
 				return plane;
 			}
-            //return p.defaultValue;
+			
             throw new ParkingIndexOutOfRangeException();
 		}
 
@@ -56,8 +56,6 @@ namespace WindowsFormsApplication4
 		{
 			return !places.ContainsKey(index);
 		}
-
-		// И самое главное - индексатор:
 
 		public T this[int ind]
 		{
