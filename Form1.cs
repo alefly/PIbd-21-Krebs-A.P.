@@ -53,9 +53,6 @@ namespace WindowsFormsApplication4
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 var plane = new Plane(100, 4, 1000, dialog.Color);
-                //int place = parking.PutPlaneInParking(plane);
-                //Draw();
-                //MessageBox.Show("Ваше место: " + place);
                 if (plane != null)
                 {
                     try
