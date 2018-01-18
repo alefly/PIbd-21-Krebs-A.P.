@@ -26,7 +26,7 @@ namespace WindowsFormsApplication4
 		{
 			if (p.places.Count == p.maxCount)
 			{
-				return -1;
+                throw new ParkingOverflowException();
 			}
 			for (int i = 0; i < p.places.Count; i++)
 			{
@@ -48,7 +48,8 @@ namespace WindowsFormsApplication4
 				p.places.Remove(index);
 				return plane;
 			}
-			return p.defaultValue;
+            //return p.defaultValue;
+            throw new ParkingIndexOutOfRangeException();
 		}
 
 		private bool CheckFreePlace(int index)
